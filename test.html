@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mural.ly</title>
+    <!-- build:css /static/css/compiled.<%= buildNumber %>.css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
+    <!-- endbuild -->
+</head>
+<body id="landing-page">
+    <!-- build:js /static/js/compiled/murally.js -->
+    <script type="text/javascript" src="/static/js/compiled/external.js"></script>
+    <script type="text/javascript" src="/static/js/onefile.js"></script>
+    <script type="text/javascript" src="/static/js/other_file.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:remove -->
+    <script type="text/javascript" src="/static/js/not-for-compiler.js?v=1355D6D2D38"></script>
+    <!-- endbuild -->
+
+    <script>
+      bootstrapLandingPage();
+    </script>
+</body>
+</html>
