@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-htmlrefs`
+Install this grunt plugin next to your project's gruntfile with: `npm install grunt-htmlrefs`
 
 Then add this line to your project's `grunt.js` gruntfile:
 
