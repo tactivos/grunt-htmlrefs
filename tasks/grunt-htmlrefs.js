@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 	var scriptTemplate = '<script type="text/javascript" src="<%= dest %>"></script>';
 
 	// stylesheet template
-	var stylesheetTemplate = '<link rel="stylesheet" type="text/css" href="<%= dest %>" />';
+	var stylesheetTemplate = '<link rel="stylesheet" type="text/css" href="<%= dest %>">';
 
 	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
 		var params = (this.data.options || {});
