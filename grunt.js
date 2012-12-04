@@ -5,8 +5,11 @@ module.exports = function (grunt) {
 			dist: {
 				src: './*.html',
 				dest: './dist/static/',
+				includes: {
+					analytics: './ga.inc'
+				},
 				options: {
-					buildNumber : 349
+					buildNumber: 349
 				}
 			}
 		}

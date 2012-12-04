@@ -28,6 +28,7 @@ module.exports = function (grunt) {
 
 	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
 		var params = (this.data.options || {});
+		var includes = (this.data.includes || {});
 		var pkg = (grunt.config.get().pkg || {});
 		var files = grunt.file.expandFiles(this.file.src);
 		var dest = this.file.dest;
@@ -43,11 +44,10 @@ module.exports = function (grunt) {
 			blocks.forEach(function (block) {
 				// Determine the indent from the content
 				var raw = block.raw.join(lf);
-				var indent = (block.raw[0].match(/^\s*/) || [])[0];
 				var options = _.extend({}, { pkg: pkg }, block, params);
 
-				var replacement = grunt.helper('htmlrefs:template:' + block.type, options);
-				content = content.replace(raw, indent + replacement);
+				var replacement = grunt.helper('htmlrefs:template:' + block.type, options, lf, includes);
+				content = content.replace(raw, replacement);
 			});
 
 			// write the contents to destination
@@ -57,11 +57,23 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerHelper('htmlrefs:template:js', function (block) {
-		return grunt.template.process(scriptTemplate, block);
+		var indent = (block.raw[0].match(/^\s*/) || [])[0];
+		return indent + grunt.template.process(scriptTemplate, block);
 	});
 
 	grunt.registerHelper('htmlrefs:template:css', function (block) {
-		return grunt.template.process(stylesheetTemplate, block);
+		var indent = (block.raw[0].match(/^\s*/) || [])[0];
+		return indent + grunt.template.process(stylesheetTemplate, block);
+	});
+
+	grunt.registerHelper('htmlrefs:template:include', function (block, lf, includes) {
+		// let's see if we have that include listed
+		if(!includes[block.dest]) return '';
+
+		var indent = (block.raw[0].match(/^\s*/) || [])[0];
+		var lines = grunt.file.read(includes[block.dest]).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l});
+
+		return lines.join(lf);
 	});
 
 	grunt.registerHelper('htmlrefs:template:remove', function (block) {
