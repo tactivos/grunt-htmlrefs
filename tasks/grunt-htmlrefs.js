@@ -92,7 +92,9 @@ module.exports = function (grunt) {
 
 			if(build) {
 				block = true;
-				sections[[build[1], build[2].trim()].join(':')] = last = [];
+				// create a random key to support multiple removes
+				var key = build[2].length > 1 ? build[2] : (Math.random(1,2) * Math.random(0, 1));
+				sections[[build[1], key.toString().trim()].join(':')] = last = [];
 			}
 
 			// switch back block flag when endbuild
@@ -108,12 +110,12 @@ module.exports = function (grunt) {
 
 		var blocks = [];
 
-		for(s in sections) {
+		for(var s in sections) {
 			blocks.push(fromSectionToBlock(s, sections[s]));
 		}
 
 		return blocks;
-	};
+	}
 
 	function fromSectionToBlock(key, section) {
 		var chunks = key.split(':');
@@ -123,5 +125,5 @@ module.exports = function (grunt) {
 			dest: chunks[1],
 			raw: section
 		};
-	};
+	}
 };

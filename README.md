@@ -96,5 +96,6 @@ There 4 types of replacements: css, js, include and remove (it will erase the wh
 [grunt]: https://github.com/cowboy/grunt
 
 ## Release History
-* 0.2.0 Added support for includes
+* 0.2.2 BUGFIX: Multiple `remove` sections (thanks @trongthanh)
+* 0.2.0 Added support for includesu
 * 0.1.0 Initial Release
