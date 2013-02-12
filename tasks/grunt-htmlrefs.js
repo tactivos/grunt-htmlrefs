@@ -10,7 +10,7 @@
  * Copyright (c) 2012 Johnny G. Halife & Mural.ly Dev Team
  */
 module.exports = function (grunt) {
-	var _ = (grunt.utils) ? grunt.utils._ : grunt.util._;
+	var _ = grunt.util._;
 
 	var path = require('path');
 
@@ -21,29 +21,22 @@ module.exports = function (grunt) {
 	var regend = /<!--\s*endbuild\s*-->/;
 
 	// <script> template
-	var scriptTemplate = '<script src="<%= dest %>"></script>';
+	var scriptTemplate = '<script type="text/javascript" src="<%= dest %>"></script>';
 
 	// stylesheet template
-	var stylesheetTemplate = '<link rel="stylesheet" href="<%= dest %>">';
+	var stylesheetTemplate = '<link type="text/css" rel="stylesheet" href="<%= dest %>">';
 	
 	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
-		var params = (this.options() || {});
+		var params = this.options();
 		var includes = (params.includes || {});
-		var pkg = (grunt.config.get().pkg || {});
-		var files = this.filesSrc; //grunt.file.expandFiles(this.file.src);
+		var pkg = (grunt.config.get('pkg') || {});
+		var files = this.filesSrc;
 		var dest = this.files[0].dest;
 
-		grunt.log.debug('options ' + params);
-		grunt.log.debug('includes ' + includes);
-		grunt.log.debug('pkg ' + includes);
-		grunt.log.debug('files ' + includes);
-
-		grunt.log.debug('files ' + includes);
-
-		
 		files.map(grunt.file.read).forEach(function (content, i) {
 			content = content.toString(); // make sure it's a string and not buffer
 			var blocks = getBlocks(content);
+
 			var file = files[i];
 
 			// Determine the linefeed from the content
@@ -67,11 +60,11 @@ module.exports = function (grunt) {
 	var htmlrefsTemplate = {
 			js : function (block) {
 				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				return indent + grunt.template.process(scriptTemplate, block);
+				return indent + grunt.template.process(scriptTemplate, {data: block});
 			},
 			css : function (block) {
 				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				return indent + grunt.template.process(stylesheetTemplate, block);
+				return indent + grunt.template.process(stylesheetTemplate, {data: block});
 			},
 			include : function (block, lf, includes) {
 				// let's see if we have that include listed
