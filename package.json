@@ -1,7 +1,7 @@
 {
   "name": "grunt-htmlrefs",
   "description": "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "homepage": "https://github.com/tactivos/grunt-htmlrefs",
   "author": {
     "name": "Johnny Halife",
@@ -15,10 +15,10 @@
     "url": "https://github.com/tactivos/grunt-htmlrefs/issues"
   },
   "engines": {
-    "node": "*"
+    "node": ">=0.8.0"
   },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.4.x"
   },
   "keywords": ["gruntplugin", "htmlrefs"]
 }

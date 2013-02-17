@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
-		pkg: '<json:package.json>',
+		pkg: grunt.file.readJSON('package.json'),
 		htmlrefs: {
 			dist: {
 				src: './*.html',
