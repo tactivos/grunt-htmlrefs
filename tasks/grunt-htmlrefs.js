@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 	
 	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
 		var params = this.options();
-		var includes = (params.includes || {});
+		var includes = (this.data.includes || {});
 		var pkg = (grunt.config.get('pkg') || {});
 		var files = this.filesSrc;
 		var dest = this.files[0].dest;
