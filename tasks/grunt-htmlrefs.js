@@ -25,6 +25,9 @@ module.exports = function (grunt) {
 
 	// stylesheet template
 	var stylesheetTemplate = '<link type="text/css" rel="stylesheet" href="<%= dest %>">';
+
+	// inlineCSS template
+	var inlineCSSTemplate = '<style><%= dest %></style>';	
 	
 	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
 		var params = this.options();
@@ -66,6 +69,11 @@ module.exports = function (grunt) {
 				var indent = (block.raw[0].match(/^\s*/) || [])[0];
 				return indent + grunt.template.process(stylesheetTemplate, {data: block});
 			},
+			inlinecss : function (block) {
+				var indent = (block.raw[0].match(/^\s*/) || [])[0];
+				var lines = grunt.file.read(block.dest).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l});			
+				return indent + grunt.template.process(inlineCSSTemplate, {data: {dest:lines}});
+			},					
 			include : function (block, lf, includes) {
 				// let's see if we have that include listed
 				if(!includes[block.dest]) return '';

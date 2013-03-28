@@ -43,6 +43,9 @@ Using the configuration above, consider the following example html to see it in 
     <!-- build:css /static/css/compiled.<%= buildNumber %>.css -->
     <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
     <!-- endbuild -->
+    <!-- build:inlinecss /static/css/compiled.css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
+    <!-- endbuild -->    
 </head>
 <body id="landing-page">
     <!-- build:js /static/js/compiled/murally.js -->
@@ -72,6 +75,7 @@ After running the grunt task it will be stored on the dist folder as
 <head>
     <title>Mural.ly</title>
     <link rel="stylesheet" type="text/css" href="/static/css/compiled.47878.css" />
+    <style> ... CSS from /static/css/compiled.css ... </style>
 </head>
 <body id="landing-page">
     <script type="text/javascript" src="/static/js/compiled/murally.js"></script>
@@ -91,7 +95,7 @@ After running the grunt task it will be stored on the dist folder as
 </html>
 ```
 
-There 4 types of replacements: css, js, include and remove (it will erase the whole block).
+There 4 types of replacements: css, inlinecss, js, include and remove (it will erase the whole block).
 
 [grunt]: https://github.com/cowboy/grunt
 
