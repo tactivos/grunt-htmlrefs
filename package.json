@@ -20,5 +20,8 @@
   "devDependencies": {
     "grunt": "~0.4.x"
   },
+  "peerDependecies": {
+	"grunt" : "0.4.x"
+  },
   "keywords": ["gruntplugin", "htmlrefs"]
 }

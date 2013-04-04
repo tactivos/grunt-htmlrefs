@@ -2,9 +2,9 @@
 
 ## Getting Started
 
-Install this grunt plugin next to your project's gruntfile with: `npm install grunt-htmlrefs`
+Install this grunt plugin next to your project's gruntfile with: `npm install grunt-htmlrefs --save-dev`
 
-Then add this line to your project's `grunt.js` gruntfile:
+Then add this line to your project's `Gruntfile.js` :
 
 ```javascript
 grunt.loadNpmTasks('grunt-htmlrefs');
@@ -100,6 +100,7 @@ There 4 types of replacements: css, inlinecss, js, include and remove (it will e
 [grunt]: https://github.com/cowboy/grunt
 
 ## Release History
+* 0.4.0 Support Grunt 0.4
 * 0.2.2 BUGFIX: Multiple `remove` sections (thanks @trongthanh)
 * 0.2.0 Added support for includesu
 * 0.1.0 Initial Release
