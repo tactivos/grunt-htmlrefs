@@ -40,29 +40,29 @@ Using the configuration above, consider the following example html to see it in 
 <html>
 <head>
     <title>Mural.ly</title>
-    <!-- build:css /static/css/compiled.<%= buildNumber %>.css -->
+    <!-- ref:css /static/css/compiled.<%= buildNumber %>.css -->
     <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
-    <!-- endbuild -->
-    <!-- build:inlinecss /static/css/compiled.css -->
+    <!-- endref -->
+    <!-- ref:inlinecss /static/css/compiled.css -->
     <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
-    <!-- endbuild -->    
+    <!-- endref -->
 </head>
 <body id="landing-page">
-    <!-- build:js /static/js/compiled/murally.js -->
+    <!-- ref:js /static/js/compiled/murally.js -->
     <script type="text/javascript" src="/static/js/compiled/external.js"></script>
     <script type="text/javascript" src="/static/js/onefile.js"></script>
     <script type="text/javascript" src="/static/js/other_file.js"></script>
-    <!-- endbuild -->
-    <!-- build:remove -->
+    <!-- endref -->
+    <!-- ref:remove -->
     <script type="text/javascript" src="/static/js/not-for-compiler.js?v=1355D6D2D38"></script>
-    <!-- endbuild -->
+    <!-- endref -->
 
     <script>
       bootstrapLandingPage();
     </script>
 
-    <!-- build:include analytics -->
-    <!-- endbuild -->
+    <!-- ref:include analytics -->
+    <!-- endref -->
 </body>
 </html>
 ```
