@@ -21,10 +21,10 @@ module.exports = function (grunt) {
 	var regend = /<!--\s*endref\s*-->/;
 
 	// <script> template
-	var scriptTemplate = '<script type="text/javascript" src="<%= dest %>"></script>';
+	var scriptTemplate = '<script src="<%= dest %>"></script>';
 
 	// stylesheet template
-	var stylesheetTemplate = '<link type="text/css" rel="stylesheet" href="<%= dest %>">';
+	var stylesheetTemplate = '<link rel="stylesheet" href="<%= dest %>">';
 
 	// inlineCSS template
 	var inlineCSSTemplate = '<style><%= dest %></style>';
