@@ -2,29 +2,33 @@
 <html>
 <head>
     <title>Mural.ly</title>
-    <!-- build:css /static/css/compiled.<%= buildNumber %>.css -->
-    <link rel="stylesheet" type="text/css" href="/static/css/development.css" />
-    <!-- endbuild -->
+    <!-- ref:css /static/css/compiled.<%= buildNumber %>.css -->
+    <link rel="stylesheet" href="/static/css/development.css" />
+    <!-- endref -->
 </head>
 <body id="landing-page">
-    <!-- build:remove -->
-    <script type="text/javascript" src="/static/js/not-for-compiler2.js?v=1355D6D2D38"></script>
-    <!-- endbuild -->
-    <!-- build:js /static/js/compiled/murally.js -->
-    <script type="text/javascript" src="/static/js/compiled/external.js"></script>
-    <script type="text/javascript" src="/static/js/onefile.js"></script>
-    <script type="text/javascript" src="/static/js/other_file.js"></script>
-    <!-- endbuild -->
+    <!-- ref:remove -->
+    <script src="/static/js/not-for-compiler2.js?v=1355D6D2D38"></script>
+    <!-- endref -->
+    <!-- ref:js /static/js/compiled/murally.js -->
+    <script src="/static/js/compiled/external.js"></script>
+    <script src="/static/js/onefile.js"></script>
+    <script src="/static/js/other_file.js"></script>
+    <!-- endref -->
 
-    <!-- build:remove -->
-    <script type="text/javascript" src="/static/js/not-for-compiler.js?v=1355D6D2D38"></script>
-    <!-- endbuild -->
+    <!-- ref:js http://code.jquery.com/jquery-1.10.2.min.js -->
+    <script src="/static/js/jquery.js"></script>
+    <!-- endref -->
+
+    <!-- ref:remove -->
+    <script src="/static/js/not-for-compiler.js?v=1355D6D2D38"></script>
+    <!-- endref -->
 
     <script>
       bootstrapLandingPage();
     </script>
 
-    <!-- build:include analytics -->
-    <!-- endbuild -->
+    <!-- ref:include analytics -->
+    <!-- endref -->
 </body>
 </html>
