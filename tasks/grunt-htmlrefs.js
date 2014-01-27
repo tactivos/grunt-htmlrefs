@@ -9,6 +9,7 @@
  *
  * Copyright (c) 2012 Johnny G. Halife & Mural.ly Dev Team
  */
+/*jshint node:true*/
 module.exports = function (grunt) {
 	var _ = grunt.util._;
 
@@ -29,7 +30,7 @@ module.exports = function (grunt) {
 	// inlineCSS template
 	var inlineCSSTemplate = '<style><%= dest %></style>';
 
-	grunt.registerMultiTask('htmlrefs', "Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files", function () {
+	grunt.registerMultiTask('htmlrefs', 'Replaces (or removes) references to non-optimized scripts or stylesheets on HTML files', function () {
 		var params = this.options();
 		var includes = (this.data.includes || {});
 		var pkg = (grunt.config.get('pkg') || {});
@@ -61,31 +62,33 @@ module.exports = function (grunt) {
 	});
 
 	var htmlrefsTemplate = {
-			js : function (block) {
-				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				return indent + grunt.template.process(scriptTemplate, {data: block});
-			},
-			css : function (block) {
-				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				return indent + grunt.template.process(stylesheetTemplate, {data: block});
-			},
-			inlinecss : function (block) {
-				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				var lines = grunt.file.read(block.dest).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l});
-				return indent + grunt.template.process(inlineCSSTemplate, {data: {dest:lines}});
-			},
-			include : function (block, lf, includes) {
-				// let's see if we have that include listed
-				if(!includes[block.dest]) return '';
-
-				var indent = (block.raw[0].match(/^\s*/) || [])[0];
-				var lines = grunt.file.read(includes[block.dest]).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l});
-
-				return lines.join(lf);
-			},
-			remove : function (block) {
-				return ''; // removes replaces with nothing
+		js : function (block) {
+			var indent = (block.raw[0].match(/^\s*/) || [])[0];
+			return indent + grunt.template.process(scriptTemplate, {data: block});
+		},
+		css : function (block) {
+			var indent = (block.raw[0].match(/^\s*/) || [])[0];
+			return indent + grunt.template.process(stylesheetTemplate, {data: block});
+		},
+		inlinecss : function (block) {
+			var indent = (block.raw[0].match(/^\s*/) || [])[0];
+			var lines = grunt.file.read(block.dest).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l; });
+			return indent + grunt.template.process(inlineCSSTemplate, {data: {dest:lines}});
+		},
+		include : function (block, lf, includes) {
+			// let's see if we have that include listed
+			if(!includes[block.dest]) {
+				return '';
 			}
+
+			var indent = (block.raw[0].match(/^\s*/) || [])[0];
+			var lines = grunt.file.read(includes[block.dest]).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {return indent + l; });
+
+			return lines.join(lf);
+		},
+		remove : function (/*block*/) {
+			return ''; // removes replaces with nothing
+		}
 	};
 
 	function getBlocks(body) {
@@ -126,11 +129,11 @@ module.exports = function (grunt) {
 	}
 
 	function fromSectionToBlock(key, section) {
-		var chunks = key.split(':');
+		var chunks = key.match(/^([^:]+):(.*)/);
 
 		return {
-			type: chunks[0],
-			dest: chunks[1],
+			type: chunks[1],
+			dest: chunks[2],
 			raw: section
 		};
 	}
