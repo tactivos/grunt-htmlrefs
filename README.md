@@ -20,13 +20,13 @@ Then specify your config:
         src: './static/views/**/*.html',
         /** @optional  - string directory name*/
         dest: './dist/static/views/',
-        /** @optional  - references external files to be included */
-        includes: {
-            analytics: './ga.inc' // in this case it's google analytics (see sample below)
-        },
-        /** any other parameter included on the options will be passed for template evaluation */
         options: {
-          buildNumber: 47878,
+          /** @optional  - references external files to be included */
+          includes: {
+            analytics: './ga.inc' // in this case it's google analytics (see sample below)
+          },
+          /** any other parameter included on the options will be passed for template evaluation */
+          buildNumber: 47878
         }
       }
     }
