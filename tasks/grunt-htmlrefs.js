@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 		},
 		inlinecss: function(block) {
 			var indent = (block.raw[0].match(/^\s*/) || [])[0];
-			var block.dest = grunt.template.process(block.dest, {data: block});
+				block.dest = grunt.template.process(block.dest, {data: block});
 			var lines = grunt.file.read(block.dest).replace(/\r\n/g, '\n').split(/\n/).map(function(l) {
 				return indent + l;
 			});
