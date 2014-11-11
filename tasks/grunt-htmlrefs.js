@@ -107,7 +107,9 @@ module.exports = function(grunt) {
 				return indent + l;
 			});
 
-			return lines.join(lf);
+			return grunt.template.process(lines.join(lf), {
+				data: block
+			});
 		},
 		remove: function( /*block*/ ) {
 			return ''; // removes replaces with nothing
